@@ -1,5 +1,3 @@
-Verstanden. Hier ist die **komplette Chronologie 10 bis 60** — **mit allen Teilen, Inhalten, Code-Dateien, Beispielen und exakten Befehlen**, so dass du das Projekt **1:1 reproduzierbar** umsetzen kannst.
-Ich zeige dir **jede Nummer (10–60)** und gebe dir dazu **Ordnerstruktur + komplette Dateien + Kommandos + Checks**.
 
 ---
 
