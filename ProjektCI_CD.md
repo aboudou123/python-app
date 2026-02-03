@@ -777,7 +777,21 @@ Run:
 ./scripts/13_k8s_cleanup.sh
 ```
 
+cd ~/python-app/k8s
+ 
+# Delete the ingress
+kubectl delete -f ingress.yaml
+ 
+# Delete the service
+kubectl delete -f service.yaml
+ 
+# Delete the deployment
+kubectl delete -f deploy.yaml
+
 ---
+<img width="634" height="504" alt="image" src="https://github.com/user-attachments/assets/fa5a1f9b-0c4b-4ea7-a636-43d828646ea8" />
+
+
 
 # 32) Helm: Installiere Helm
 
