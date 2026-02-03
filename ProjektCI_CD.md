@@ -464,6 +464,11 @@ docker push ${IMAGE}:${TAG}
 
 # 23) Kubernetes: Deploye lokalen Cluster (kind empfohlen)
 
+
+
+<img width="585" height="373" alt="k1" src="https://github.com/user-attachments/assets/c21dfba5-6d7b-4a35-8a6e-d2bbe3e69c86" />
+
+
 **`scripts/10_kind_create.sh`**
 
 ```bash
@@ -481,6 +486,11 @@ chmod +x scripts/*.sh
 ./scripts/10_kind_create.sh
 ```
 
+<img width="586" height="189" alt="k2" src="https://github.com/user-attachments/assets/e11bc298-e24f-4b03-b87c-5cc27cd8fe8c" />
+
+
+<img width="532" height="430" alt="k3" src="https://github.com/user-attachments/assets/be3eb666-f6b8-44b2-b006-39ddea5564ac" />
+
 ---
 
 # 24) Kubernetes: Greife auf meinen lokalen Cluster zu
@@ -489,10 +499,39 @@ chmod +x scripts/*.sh
 kubectl get nodes
 kubectl get ns
 ```
+<img width="592" height="396" alt="k4" src="https://github.com/user-attachments/assets/52d2d0cc-7a53-4954-81b5-2082219a10d7" />
+
+
+<img width="639" height="524" alt="k5" src="https://github.com/user-attachments/assets/7e3ab89a-a6af-4c6b-9b9d-70e9462c95b3" />
+
+
+<img width="641" height="247" alt="k6" src="https://github.com/user-attachments/assets/72fe45a8-21d8-4319-bdd2-efd99206233d" />
+<img width="641" height="247" alt="k6" src="https://github.com/user-attachments/assets/3bb5c17e-eefe-4166-8379-2d8aad1a1d74" />
+
+
+
+<img width="639" height="488" alt="k7" src="https://github.com/user-attachments/assets/dc213907-5f2b-4e4e-b352-f12908c82cec" />
+
+<img width="641" height="411" alt="k8" src="https://github.com/user-attachments/assets/6259d7bf-f396-4648-8169-6c9a31abdac1" />
+
+# Ergebnis
+
+
+
+<img width="558" height="612" alt="k12" src="https://github.com/user-attachments/assets/4a60da92-23cf-482a-a62e-c1ea3b45235e" />
+
+<img width="1077" height="476" alt="k11" src="https://github.com/user-attachments/assets/b5f5933d-6911-4228-a839-1e2f71ec4d21" />
+
+
+
+<img width="485" height="231" alt="k9" src="https://github.com/user-attachments/assets/0a77bb64-c320-4c42-b686-f71af035654a" />
 
 ---
 
 # 25) Kubernetes: Konfiguriere Ingress-Controller (NGINX)
+
+
+
 
 Für kind:
 
@@ -505,16 +544,47 @@ kubectl -n ingress-nginx rollout status deploy/ingress-nginx-controller
 
 # 26) Kubernetes: Deploye meine Anwendung (Manifests, Best Practices)
 
+<img width="1077" height="476" alt="k11" src="https://github.com/user-attachments/assets/1a39f718-ff11-4440-80a6-76f7f59265c8" />
+
+
+<img width="563" height="407" alt="k13" src="https://github.com/user-attachments/assets/ef9ea0c1-6f22-44ef-9009-c28e533b1ace" />
+
 ## 26.1 Namespace
+
+<img width="937" height="643" alt="K14" src="https://github.com/user-attachments/assets/6ded9fe3-31aa-4456-969d-12e9d18052d8" />
+
 
 **`k8s/namespace.yaml`**
 
 ```yaml
-apiVersion: v1
-kind: Namespace
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: flask
+  name: python-app
+  labels:
+    app: python-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: abk18999/python-app:v2
+        ports:
+        - containerPort: 5000
+
 ```
+
+<img width="937" height="643" alt="K14" src="https://github.com/user-attachments/assets/50850fd3-f10c-4989-8b5d-a6598184d2d5" />
+
+
+
 
 ## 26.2 Deployment (Resources + Probes)
 
@@ -572,6 +642,8 @@ spec:
 
 > Wichtig: Ersetze `<DEIN_USER>` und Tag.
 
+
+
 ---
 
 # 27) Kubernetes: Erstellung von  Services
@@ -582,17 +654,22 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-api
-  namespace: flask
+  name: python-app
 spec:
   selector:
-    app: flask-api
+    app: python-app
   ports:
-    - name: http
-      port: 80
+    - protocol: TCP
+      port: 8080
       targetPort: 5000
-  type: ClusterIP
 ```
+
+<img width="937" height="643" alt="K14" src="https://github.com/user-attachments/assets/4f7599e8-225c-47bd-987d-78c1de70c235" />
+
+<img width="597" height="303" alt="k15" src="https://github.com/user-attachments/assets/92c57be2-09b2-446b-93ae-7ceb14c481b4" />
+
+
+<img width="575" height="440" alt="k16" src="https://github.com/user-attachments/assets/b559d2eb-17fd-4276-97e5-b995e7fdf335" />
 
 ---
 
@@ -604,24 +681,29 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: flask-api
-  namespace: flask
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: python-app-ingress
 spec:
-  ingressClassName: nginx
   rules:
-    - host: flask.local
+    - host: "python-app.local"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: flask-api
+                name: python-app
                 port:
-                  number: 80
+                  number: 8080
 ```
+<img width="1060" height="634" alt="k17" src="https://github.com/user-attachments/assets/10090520-0158-441c-b3b9-805daea4dbc8" />
+
+
+<img width="992" height="623" alt="k18" src="https://github.com/user-attachments/assets/884db207-9938-4daa-89c0-6cdbd6fcfea4" />
+
+
+
+<img width="632" height="414" alt="k19" src="https://github.com/user-attachments/assets/298f2ada-3595-4dc1-a231-63bd6e9069ed" />
+
 
 ---
 
