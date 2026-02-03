@@ -3,7 +3,7 @@
 
 # 0) Zielbild
 
-Am Ende hast du EIN Repo (GitHub), z.B. `flask-devops-pipeline`, mit:
+# Am Ende dieser Arbeit soll ein Repository auf GitHub vorliegen, konkret mit dem Namen „flask-devops-pipeline“, das folgende Inhalte umfasst:
 
 * `app/` Flask API (3 Endpunkte)
 * `Dockerfile` (Multi-Stage, non-root, gunicorn)
