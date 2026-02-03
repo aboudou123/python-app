@@ -1,7 +1,7 @@
 
 ---
 
-# 0) Zielbild (damit du weißt, was am Ende existiert)
+# 0) Zielbild
 
 Am Ende hast du EIN Repo (GitHub), z.B. `flask-devops-pipeline`, mit:
 
@@ -13,6 +13,11 @@ Am Ende hast du EIN Repo (GitHub), z.B. `flask-devops-pipeline`, mit:
 * `.github/workflows/` CI und CD Workflows
 * `scripts/` Build/Deploy/Cleanup/Cluster-Setup-Skripte
 * `README.md` komplette Doku
+
+
+
+
+<img width="697" height="274" alt="image" src="https://github.com/user-attachments/assets/e164fba5-5034-4c36-b434-c1b1e1d337c3" />
 
 ---
 
@@ -52,6 +57,12 @@ touch scripts/20_helm_install.sh scripts/21_helm_uninstall.sh
 touch scripts/30_argocd_install.sh scripts/31_argocd_login.sh scripts/32_argocd_app_apply.sh scripts/33_argocd_cleanup.sh
 touch README.md .gitignore
 ```
+<img width="501" height="386" alt="2026-01-18 10_08_12-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_requirements txt (python-app)" src="https://github.com/user-attachments/assets/8ed35964-eb77-4f6f-8aae-962ca7223875" />
+
+
+
+
+<img width="658" height="358" alt="2026-01-18 10_08_53-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_requirements txt (python-app)" src="https://github.com/user-attachments/assets/dedefa23-d4b0-41b0-a022-8265350d92c2" />
 
 ---
 
@@ -74,6 +85,14 @@ docker run --rm hello-world
 python3 --version
 pip3 --version
 ```
+
+<img width="570" height="387" alt="2026-01-18 21_45_11-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_Dockerfile (python-app) - Sub" src="https://github.com/user-attachments/assets/c711586e-755b-426b-8d80-7263bb5f6bb4" />
+
+
+
+<img width="935" height="529" alt="2026-01-18 21_03_41-" src="https://github.com/user-attachments/assets/62e78ef7-43a1-4445-852f-1955c2b4a241" />
+
+
 
 ---
 
@@ -110,6 +129,7 @@ ruff==0.5.7
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
 ```
+<img width="501" height="386" alt="2026-01-18 10_08_12-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_requirements txt (python-app)" src="https://github.com/user-attachments/assets/bcc8e2c1-e052-4cec-903e-b1fe522b744a" />
 
 ---
 
@@ -143,6 +163,8 @@ Start:
 python -m app.main
 curl -s http://localhost:5000/health
 ```
+
+
 
 ---
 
@@ -338,6 +360,14 @@ docker build -t flask-api:local .
 docker images | grep flask-api
 ```
 
+
+
+
+<img width="935" height="529" alt="2026-01-18 21_03_41-" src="https://github.com/user-attachments/assets/10ce2df2-571e-4742-97e6-62a5e7020335" />
+
+
+<img width="941" height="477" alt="2026-01-18 21_30_58-Greenshot" src="https://github.com/user-attachments/assets/2a97bf6b-3d79-4cde-8fdd-e2fa16b20b26" />
+
 ---
 
 # 19) Docker: Deploye deine Anwendung als Container – I (Run)
@@ -355,6 +385,17 @@ Test:
 curl -s http://localhost:5000/health
 curl -s http://localhost:5000/info
 ```
+
+
+<img width="971" height="527" alt="2026-01-18 11_45_31-Get data - abk18937&#39;s Workspace" src="https://github.com/user-attachments/assets/4b7fbdf1-d328-4c76-99d4-9a3524ab36b9" />
+
+
+<img width="535" height="320" alt="2026-01-18 11_45_05-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_src_app py (python-app) - Sub" src="https://github.com/user-attachments/assets/d9b85fcb-cc1d-4892-b87e-fbfdf3632062" />
+
+
+<img width="631" height="390" alt="2026-01-18 21_37_39-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_Dockerfile (python-app) - Sub" src="https://github.com/user-attachments/assets/fc4279b7-20f8-4bf8-ae62-60dd5a100b04" />
+
+
 
 ---
 
@@ -393,6 +434,7 @@ Login:
 docker login -u <DOCKERHUB_USERNAME>
 # Passwort = Token
 ```
+<img width="821" height="445" alt="2026-01-18 21_54_16-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_Dockerfile (python-app) - Sub" src="https://github.com/user-attachments/assets/b9a42916-919a-4449-993b-c54480764342" />
 
 ---
 
@@ -408,6 +450,12 @@ export TAG="v0.1.0"
 docker tag flask-api:local ${IMAGE}:${TAG}
 docker push ${IMAGE}:${TAG}
 ```
+<img width="867" height="360" alt="2026-01-18 21_57_12-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_Dockerfile (python-app) - Sub" src="https://github.com/user-attachments/assets/20095d4a-0f25-406a-aa29-0c9e7bb0e83c" />
+
+
+
+
+<img width="775" height="515" alt="2026-01-18 22_04_05-__wsl localhost_Ubuntu-24 04_home_koffi_python-app_Dockerfile (python-app) - Sub" src="https://github.com/user-attachments/assets/9b9496c8-2a45-4a0e-bfef-8b8a954f5617" />
 
 ---
 
