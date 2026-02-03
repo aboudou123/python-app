@@ -66,7 +66,7 @@ touch README.md .gitignore
 
 ---
 
-# 11) Installiere Docker auf deinem Computer
+# 11) Installation Docker
 
 ## 11.1 Test
 
@@ -133,7 +133,7 @@ pip install -r requirements.txt -r requirements-dev.txt
 
 ---
 
-# 14) Python: Schreibe eine einfache Flask-API – I
+# 14) Python: einfache Flask-API – I
 
 **`app/main.py`**
 
@@ -168,7 +168,7 @@ curl -s http://localhost:5000/health
 
 ---
 
-# 15) Python: Schreibe eine einfache Flask-API – II
+# 15) Python: einfache Flask-API – II
 
 Erweitere um `/data`.
 
@@ -206,7 +206,7 @@ curl -s http://localhost:5000/data
 
 ---
 
-# 16) Python: Schreibe eine einfache Flask-API – III
+# 16) Python: einfache Flask-API – III
 
 Erweitere um `/info` + ENV + uptime.
 
@@ -353,7 +353,7 @@ tests
 
 ---
 
-# 18) Docker: Baue dein Anwendungs-Image
+# 18) Docker: Baue mein Anwendungs-Image
 
 ```bash
 docker build -t flask-api:local .
@@ -370,7 +370,7 @@ docker images | grep flask-api
 
 ---
 
-# 19) Docker: Deploye deine Anwendung als Container – I (Run)
+# 19) Docker: Deploye meine Anwendung als Container – I (Run)
 
 ```bash
 docker run --rm -p 5000:5000 \
@@ -399,7 +399,7 @@ curl -s http://localhost:5000/info
 
 ---
 
-# 20) Docker: Deploye deine Anwendung als Container – II (Logs/Stop/Debug)
+# 20) Docker: Deploye meine Anwendung als Container – II (Logs/Stop/Debug)
 
 Logs:
 
@@ -438,7 +438,7 @@ docker login -u <DOCKERHUB_USERNAME>
 
 ---
 
-# 22) Docker: Übertrage dein Image in eine Registry
+# 22) Docker: Übertrage mein Image in eine Registry
 
 Tag + Push:
 
@@ -480,7 +480,7 @@ chmod +x scripts/*.sh
 
 ---
 
-# 24) Kubernetes: Greife auf deinen lokalen Cluster zu
+# 24) Kubernetes: Greife auf meinen lokalen Cluster zu
 
 ```bash
 kubectl get nodes
@@ -500,7 +500,7 @@ kubectl -n ingress-nginx rollout status deploy/ingress-nginx-controller
 
 ---
 
-# 26) Kubernetes: Deploye deine Anwendung (Manifests, Best Practices)
+# 26) Kubernetes: Deploye meine Anwendung (Manifests, Best Practices)
 
 ## 26.1 Namespace
 
@@ -571,7 +571,7 @@ spec:
 
 ---
 
-# 27) Kubernetes: Erstelle Services
+# 27) Kubernetes: Erstellung von  Services
 
 **`k8s/service.yaml`**
 
@@ -622,7 +622,7 @@ spec:
 
 ---
 
-# 29) Hinweis zum Bonus-Tipp (lokales Hostname-Routing)
+# 29) lokales Hostname-Routing
 
 Damit `flask.local` auf deinen lokalen Ingress zeigt:
 
@@ -673,7 +673,7 @@ curl -H "Host: flask.local" http://localhost:8080/info
 
 ---
 
-# 31) Kubernetes: Lösche Deployments, bevor du Helm installierst
+# 31) Kubernetes: Lösche Deployments, bevor ich Helm installierst
 
 **`scripts/13_k8s_cleanup.sh`**
 
@@ -704,7 +704,7 @@ helm version
 
 ---
 
-# 33) Helm: Erstelle Helm-Chart für deine Anwendung
+# 33) Helm: Erstelle Helm-Chart für meine Anwendung
 
 ## 33.1 `Chart.yaml`
 
@@ -886,7 +886,7 @@ env:
 
 ---
 
-# 35) Helm: Deploye dein Helm-Chart auf Kubernetes
+# 35) Helm: Deploye mein Helm-Chart auf Kubernetes
 
 Namespace:
 
@@ -919,7 +919,7 @@ curl -H "Host: flask.local" http://localhost:8080/health
 
 ---
 
-# 36) Helm: Lösche dein Release, bevor du bereitstellst (Cleanup)
+# 36) Helm: Lösche mein Release, bevor du bereitstellst (Cleanup)
 
 ```bash
 helm uninstall flask-api -n flask
@@ -927,7 +927,7 @@ helm uninstall flask-api -n flask
 
 ---
 
-# 36) Helm: Lösche dein Release, bevor du ArgoCD deployst (nochmal als Check)
+# 36) Helm: Lösche mein Release, bevor du ArgoCD deployst (nochmal als Check)
 
 Wenn du noch Releases hast:
 
@@ -957,7 +957,7 @@ kubectl -n argocd port-forward svc/argocd-server 8081:443
 
 ---
 
-# 38) GitOps: Melde dich bei ArgoCD an
+# 38) GitOps: Melde mich bei ArgoCD an
 
 Default Admin Passwort aus Secret:
 
@@ -976,7 +976,7 @@ argocd login localhost:8081 --username admin --password <PASS> --insecure
 
 ---
 
-# 39) GitOps: Übertrage deine Änderungen zu GitHub
+# 39) GitOps: Übertragung meine Änderungen zu GitHub
 
 `.gitignore`:
 
@@ -1001,7 +1001,7 @@ git push -u origin main
 
 ---
 
-# 40) GitOps: Integriere ArgoCD und GitHub (Repo verbinden)
+# 40) GitOps: Integration ArgoCD und GitHub (Repo verbinden)
 
 ArgoCD Application zeigt auf dein Helm-Chart im Repo.
 
@@ -1041,7 +1041,7 @@ kubectl apply -f argocd/application.yaml
 
 ---
 
-# 41) GitOps: Deploye deine App mit ArgoCD
+# 41) GitOps: Deploye meine App mit ArgoCD
 
 In UI: Application → Sync
 Oder CLI:
@@ -1227,7 +1227,7 @@ runs-on: [self-hosted, linux, x64, k8s, argocd]
 
 ---
 
-# 50) Lade die ArgoCD-CLI herunter
+# 50) Ladung der ArgoCD-CLI herunter
 
 Linux:
 
@@ -1246,7 +1246,7 @@ brew install argocd
 
 ---
 
-# 51) Nutze die ArgoCD-API für die Anmeldung (Token statt Passwort)
+# 51) Nutzung der ArgoCD-API für die Anmeldung (Token statt Passwort)
 
 Token erzeugen (einmalig):
 
@@ -1406,7 +1406,7 @@ jobs:
 
 ---
 
-# Scripts (damit du nicht alles tippen musst)
+# Scripts (damit ich nicht alles tippen musste)
 
 **`scripts/02_docker_build_run.sh`**
 
@@ -1517,9 +1517,9 @@ kubectl apply -f argocd/application.yaml
 
 ---
 
-# Schluss: Was du JETZT konkret machen musst (ohne Diskussion)
+## Schluss:
 
-1) Ersetze überall:
+1) Ersetzung :
 - `<DEIN_USER>` / `<DEIN_REPO>` im ArgoCD Application und Helm values
 - `image:` im k8s deployment oder nutze Helm statt raw k8s
 
@@ -1536,5 +1536,4 @@ kubectl apply -f argocd/application.yaml
 
 ---
 
-Wenn du willst, kann ich dir als nächstes (ohne Rückfragen) **ein einziges “finales Repo-Listing”** geben: eine Liste aller Dateien (mit Pfad) + kompletter Inhalt am Stück, damit du nur Copy/Paste machen musst.
-```
+** vielen dank **
