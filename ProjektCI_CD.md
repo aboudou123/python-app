@@ -544,6 +544,11 @@ kubectl -n ingress-nginx rollout status deploy/ingress-nginx-controller
 
 # 26) Kubernetes: Deploye meine Anwendung (Manifests, Best Practices)
 
+<img width="420" height="339" alt="image" src="https://github.com/user-attachments/assets/b912d7f3-4a26-44f1-9fe3-14715c806ef4" />
+
+
+
+
 <img width="1077" height="476" alt="k11" src="https://github.com/user-attachments/assets/1a39f718-ff11-4440-80a6-76f7f59265c8" />
 
 
@@ -554,7 +559,7 @@ kubectl -n ingress-nginx rollout status deploy/ingress-nginx-controller
 <img width="937" height="643" alt="K14" src="https://github.com/user-attachments/assets/6ded9fe3-31aa-4456-969d-12e9d18052d8" />
 
 
-**`k8s/namespace.yaml`**
+**`k8s/deploy.yaml`**
 
 ```yaml
 apiVersion: apps/v1
@@ -591,56 +596,32 @@ spec:
 **`k8s/deployment.yaml`**
 
 ```yaml
+koffi@DePatrick:~/python-app$ cd k8s/
+koffi@DePatrick:~/python-app/k8s$ cat deploy.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-api
-  namespace: flask
+  name: python-app
   labels:
-    app: flask-api
+    app: python-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: flask-api
+      app: python-app
   template:
     metadata:
       labels:
-        app: flask-api
+        app: python-app
     spec:
       containers:
-        - name: flask-api
-          image: docker.io/<DEIN_USER>/flask-devops-pipeline:v0.1.0
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5000
-          env:
-            - name: APP_ENV
-              value: "kubernetes"
-            - name: APP_VERSION
-              value: "v0.1.0"
-          resources:
-            requests:
-              cpu: "50m"
-              memory: "64Mi"
-            limits:
-              cpu: "250m"
-              memory: "256Mi"
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 5000
-            initialDelaySeconds: 5
-            periodSeconds: 5
+      - name: python-app
+        image: abk18999/python-app:v2
+        ports:
+        - containerPort: 5000
 ```
-
-> Wichtig: Ersetze `<DEIN_USER>` und Tag.
+<img width="482" height="465" alt="image" src="https://github.com/user-attachments/assets/de6a2300-88da-47cf-90c0-4f1d4bfb8354" />
 
 
 
@@ -663,6 +644,11 @@ spec:
       port: 8080
       targetPort: 5000
 ```
+
+<img width="475" height="476" alt="image" src="https://github.com/user-attachments/assets/f8ae36ff-426a-492a-bfa2-d1b9ceb58a88" />
+
+
+
 
 <img width="937" height="643" alt="K14" src="https://github.com/user-attachments/assets/4f7599e8-225c-47bd-987d-78c1de70c235" />
 
@@ -695,6 +681,11 @@ spec:
                 port:
                   number: 8080
 ```
+<img width="412" height="108" alt="image" src="https://github.com/user-attachments/assets/77921c03-4c48-421e-a581-d3fb9a878ed2" />
+
+
+
+
 <img width="1060" height="634" alt="k17" src="https://github.com/user-attachments/assets/10090520-0158-441c-b3b9-805daea4dbc8" />
 
 
