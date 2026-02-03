@@ -1,9 +1,12 @@
 
+
+# Learn Platform Engineering, Backstage, Kubernetes, ArgoCD, Docker, GitOps, Helm, GitHub Actions & CI/CD to build IDPs
+
 ---
 
 # 0) Zielbild
 
-# Am Ende dieser Arbeit soll ein Repository auf GitHub vorliegen, konkret mit dem Namen „flask-devops-pipeline“, das folgende Inhalte umfasst:
+### Am Ende dieser Arbeit soll ein Repository auf GitHub vorliegen, konkret mit dem Namen „flask-devops-pipeline“, das folgende Inhalte umfasst:
 
 * `app/` Flask API (3 Endpunkte)
 * `Dockerfile` (Multi-Stage, non-root, gunicorn)
